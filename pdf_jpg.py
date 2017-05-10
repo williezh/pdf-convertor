@@ -1,14 +1,16 @@
+#coding=utf-8
 import os
 import sys  
 import PyPDF2  
 import PythonMagick 
-from os.path import exists, basename, splitext, isdir, join as joinpath
+from tkFileDialog import askopenfilename
+from os.path import exists, dirname, basename, splitext, isdir, join as joinpath
 from tqdm import tqdm
   
-  
-pdffilename = "sample/xml.pdf"   
+pdffilename = str(askopenfilename(filetypes=[(u'pdf格式', '*.pdf')]))  
+#pdffilename = "sample/xml.pdf"   
 fname = basename(pdffilename)
-outputdir = splitext(fname)[0]
+outputdir = joinpath(dirname(pdffilename), splitext(fname)[0])
 if not exists(outputdir) or not isdir(outputdir):
     os.mkdir(outputdir)
 
